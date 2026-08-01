@@ -1,6 +1,7 @@
 import { createServerFn } from "@tanstack/react-start";
 import { z } from "zod";
 
+import type { Json } from "@/integrations/supabase/types";
 import type { CriticReport, StoredReport } from "./critic-types";
 
 const UrlInput = z.object({ url: z.string().trim().min(3).max(2048) });
@@ -34,7 +35,7 @@ export const shareReport = createServerFn({ method: "POST" })
         url: report.url.slice(0, 2048),
         site_title: (report.siteTitle ?? "").slice(0, 300),
         overall_score: Number(report.overallScore) || 0,
-        report: report as unknown as Record<string, unknown>,
+        report: report as unknown as Json,
       })
       .select("id")
       .single();
