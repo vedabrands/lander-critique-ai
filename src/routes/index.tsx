@@ -158,7 +158,7 @@ function Home() {
             </div>
           )}
 
-          {mutation.isSuccess && !mutation.isPending && <ReportView report={mutation.data.report} shareId={mutation.data.id || undefined} />}
+          {mutation.isSuccess && !mutation.isPending && <ReportView report={mutation.data.report} {...(mutation.data.id ? { shareId: mutation.data.id } : {})} />}
         </div>
 
         {!mutation.isPending && !mutation.data && (
