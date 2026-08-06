@@ -132,12 +132,25 @@ function SiteHeader() {
     <header className="sticky top-0 z-20 border-b border-border bg-background/80 backdrop-blur">
       <div className="mx-auto flex w-full max-w-3xl items-center justify-between px-5 py-3.5">
         <Link to="/" className="flex items-center gap-2">
-          <span className="flex size-6 items-center justify-center rounded-md bg-accent font-mono text-xs font-bold text-accent-foreground">
-            L
-          </span>
+          <img
+            src={logoAsset.url}
+            alt="UXroast AI logo"
+            className="size-7 rounded-md object-cover"
+            width={28}
+            height={28}
+          />
           <span className="text-sm font-semibold tracking-tight">UXroast AI</span>
         </Link>
-        <ThemeToggle />
+        <nav className="flex items-center gap-1">
+          <Link
+            to="/dashboard"
+            className="rounded-lg px-3 py-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground"
+            activeProps={{ className: "rounded-lg px-3 py-1.5 text-sm text-foreground" }}
+          >
+            Dashboard
+          </Link>
+          <ThemeToggle />
+        </nav>
       </div>
     </header>
   );
