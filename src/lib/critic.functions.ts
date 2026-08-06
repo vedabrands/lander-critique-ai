@@ -9,12 +9,55 @@ const IdInput = z.object({ id: z.string().uuid() });
 
 export const analyzeLandingPage = createServerFn({ method: "POST" })
   .inputValidator((input: unknown) => UrlInput.parse(input))
-  .handler(async ({ data }): Promise<CriticReport> => {
+  .handler(async ({ data }): Promise<StoredReport> => {
     const { normalizeUrl, scrapePage, analyzePage } = await import("./critic.server");
     const url = normalizeUrl(data.url);
     const page = await scrapePage(url);
-    return analyzePage(page);
+    const report = await analyzePage(page);
+
+    const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
+    const { data: row, error } = await supabaseAdmin
+      .from("reports")
+      .insert({
+        url: report.url.slice(0, 2048),
+        site_title: (report.siteTitle ?? "").slice(0, 300),
+        overall_score: Number(report.overallScore) || 0,
+        report: report as unknown as Json,
+      })
+      .select("id, created_at")
+      .single();
+
+    if (error || !row) {
+      console.error("[analyzeLandingPage] insert failed", error);
+      return { id: "", createdAt: new Date().toISOString(), report };
+    }
+
+    return { id: row.id, createdAt: row.created_at, report };
   });
+
+export const listRecentReports = createServerFn({ method: "GET" }).handler(
+  async (): Promise<Array<{ id: string; url: string; siteTitle: string; score: number; createdAt: string }>> => {
+    const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
+    const { data: rows, error } = await supabaseAdmin
+      .from("reports")
+      .select("id, url, site_title, overall_score, created_at")
+      .order("created_at", { ascending: false })
+      .limit(50);
+
+    if (error) {
+      console.error("[listRecentReports] read failed", error);
+      throw new Error("Could not load your recent analyses.");
+    }
+
+    return (rows ?? []).map((row) => ({
+      id: row.id,
+      url: row.url,
+      siteTitle: row.site_title ?? "",
+      score: row.overall_score ?? 0,
+      createdAt: row.created_at,
+    }));
+  },
+);
 
 export const shareReport = createServerFn({ method: "POST" })
   .inputValidator((input: unknown) =>
