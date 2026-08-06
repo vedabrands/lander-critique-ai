@@ -10,7 +10,6 @@ import {
 import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
-import logoAsset from "../assets/uxroast-logo.png.asset.json";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { ThemeToggle } from "../components/ThemeToggle";
 import { Toaster } from "../components/ui/sonner";
@@ -134,7 +133,7 @@ function SiteHeader() {
       <div className="mx-auto flex w-full max-w-3xl items-center justify-between px-5 py-3.5">
         <Link to="/" className="flex items-center gap-2">
           <img
-            src={logoAsset.url}
+            src="/favicon.png"
             alt="UXroast AI logo"
             className="size-7 rounded-md object-cover"
             width={28}
