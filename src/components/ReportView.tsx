@@ -231,7 +231,7 @@ export function ReportView({
           </p>
         </div>
         <a
-          href={`mailto:hello@landingpagecritic.com?subject=${encodeURIComponent(
+          href={`mailto:vedabrandssupport@gmail.com?subject=${encodeURIComponent(
             `Implement fixes for ${report.url}`,
           )}`}
           className="inline-flex items-center justify-center gap-2 rounded-lg bg-accent px-4 py-2.5 text-sm font-semibold text-accent-foreground transition-opacity hover:opacity-90"

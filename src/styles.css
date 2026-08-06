@@ -5,7 +5,7 @@
 @custom-variant dark (&:is(.dark *));
 
 /*
- * Landing Page Critic design system.
+ * UXroast AI design system.
  * Dark-first, Stripe/Vercel-flavored: near-black surfaces, thin borders,
  * one cool signal accent. All colors are oklch semantic tokens.
  */

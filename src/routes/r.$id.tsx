@@ -9,10 +9,10 @@ export const Route = createFileRoute("/r/$id")({
   head: ({ loaderData }) => {
     const title = loaderData?.report
       ? `${loaderData.report.siteTitle || loaderData.report.url} scored ${loaderData.report.overallScore}/100`
-      : "Shared report — Landing Page Critic";
+      : "Shared report — UXroast AI";
     const description = loaderData?.report
       ? loaderData.report.verdict
-      : "A shared landing page critique from Landing Page Critic.";
+      : "A shared landing page critique from UXroast AI.";
     return {
       meta: [
         { title },

@@ -6,11 +6,11 @@ import { useState } from "react";
 
 import { ReportView } from "@/components/ReportView";
 import { analyzeLandingPage } from "@/lib/critic.functions";
-import type { CriticReport } from "@/lib/critic-types";
+import type { StoredReport } from "@/lib/critic-types";
 
 const DEMO_URL = "https://stripe.com";
 
-const TITLE = "Landing Page Critic — AI audit of your landing page";
+const TITLE = "UXroast AI — AI landing page audits";
 const DESCRIPTION =
   "Paste any URL and get an instant expert critique of your landing page: UI/UX, copywriting, conversion fixes, and a score out of 100.";
 
@@ -70,7 +70,7 @@ function Home() {
   const [url, setUrl] = useState("");
   const analyze = useServerFn(analyzeLandingPage);
 
-  const mutation = useMutation<CriticReport, Error, string>({
+  const mutation = useMutation<StoredReport, Error, string>({
     mutationFn: (value) => analyze({ data: { url: value } }),
   });
 
@@ -158,7 +158,7 @@ function Home() {
             </div>
           )}
 
-          {mutation.isSuccess && !mutation.isPending && <ReportView report={mutation.data} />}
+          {mutation.isSuccess && !mutation.isPending && <ReportView report={mutation.data.report} {...(mutation.data.id ? { shareId: mutation.data.id } : {})} />}
         </div>
 
         {!mutation.isPending && !mutation.data && (
