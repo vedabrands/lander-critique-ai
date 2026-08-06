@@ -10,7 +10,7 @@ import type { CriticReport } from "@/lib/critic-types";
 
 const DEMO_URL = "https://stripe.com";
 
-const TITLE = "Landing Page Critic — AI audit of your landing page";
+const TITLE = "UXroast AI — AI landing page audits";
 const DESCRIPTION =
   "Paste any URL and get an instant expert critique of your landing page: UI/UX, copywriting, conversion fixes, and a score out of 100.";
 

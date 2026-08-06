@@ -79,19 +79,19 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Landing Page Critic" },
+      { title: "UXroast AI" },
       {
         name: "description",
         content: "AI critique of any landing page: UI/UX, copy, conversion, and a score out of 100.",
       },
-      { property: "og:title", content: "Landing Page Critic" },
+      { property: "og:title", content: "UXroast AI" },
       {
         property: "og:description",
         content: "AI critique of any landing page: UI/UX, copy, conversion, and a score out of 100.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "Landing Page Critic" },
+      { name: "twitter:title", content: "UXroast AI" },
       { name: "twitter:description", content: "AI critique of any landing page: UI/UX, copy, conversion, and a score out of 100." },
       { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/3d9c3bdc-4038-45c0-a4cf-b85aeb167877" },
       { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/3d9c3bdc-4038-45c0-a4cf-b85aeb167877" },
@@ -104,7 +104,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         rel: "stylesheet",
         href: "https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap",
       },
-      { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
+      { rel: "icon", href: "/favicon.png", type: "image/png" },
     ],
   }),
   shellComponent: RootShell,
@@ -135,7 +135,7 @@ function SiteHeader() {
           <span className="flex size-6 items-center justify-center rounded-md bg-accent font-mono text-xs font-bold text-accent-foreground">
             L
           </span>
-          <span className="text-sm font-semibold tracking-tight">Landing Page Critic</span>
+          <span className="text-sm font-semibold tracking-tight">UXroast AI</span>
         </Link>
         <ThemeToggle />
       </div>
@@ -155,7 +155,7 @@ function RootComponent() {
           <Outlet />
         </div>
         <footer className="border-t border-border py-6 text-center text-xs text-muted-foreground">
-          Landing Page Critic — audits powered by AI
+          UXroast AI — audits powered by AI
         </footer>
       </div>
       <Toaster position="top-center" />
